@@ -21,6 +21,17 @@ export type MonthlyTrend = {
   qty: number
 }
 
+export type DealerGeoSales = {
+  dealership_id: number
+  dealership: string
+  district: string
+  lat: number
+  lng: number
+  revenue: number
+  qty: number
+  share_pct: number
+}
+
 export type DealerSales = {
   dealership_id: number
   dealership: string

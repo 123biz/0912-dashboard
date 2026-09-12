@@ -6,8 +6,8 @@ import { DowChart } from './components/DowChart'
 import { FilterBar } from './components/FilterBar'
 import { Header } from './components/Header'
 import { KpiCards } from './components/KpiCards'
-import { MonthlyTrendChart } from './components/MonthlyTrendChart'
 import { ProductTopChart } from './components/ProductTopChart'
+import { SeoulMap } from './components/SeoulMap'
 import { useFilters } from './hooks/useFilters'
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
       <main className="mx-auto max-w-[1400px] space-y-4 px-6 py-6">
         <KpiCards filters={filters} />
 
-        <MonthlyTrendChart filters={filters} />
+        <SeoulMap filters={filters} onSelectDealer={selectDealer} />
 
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
           <DealerRankChart filters={filters} onSelectDealer={selectDealer} />

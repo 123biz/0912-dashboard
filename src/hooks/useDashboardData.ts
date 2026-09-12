@@ -5,13 +5,13 @@ import { toNumber } from '../lib/format'
 import type {
   CategorySales,
   DataRange,
+  DealerGeoSales,
   DealerSales,
   Dealership,
   DowSales,
   Filters,
   KpiSummary,
   MatrixCell,
-  MonthlyTrend,
   ProductSales,
 } from '../types'
 
@@ -86,19 +86,22 @@ export function useKpiSummary(filters: Filters) {
   })
 }
 
-export function useMonthlyTrend(filters: Filters) {
+export function useDealerGeoSales(filters: Filters) {
   return useQuery({
-    queryKey: key('monthly', filters),
+    queryKey: key('geo', filters),
     placeholderData: keepPreviousData,
     queryFn: async () => {
-      const rows = await callRpc<MonthlyTrend>(
-        'get_monthly_trend',
+      const rows = await callRpc<DealerGeoSales>(
+        'get_dealer_geo_sales',
         toRpcParams(filters),
       )
       return rows.map((r) => ({
         ...r,
+        lat: toNumber(r.lat),
+        lng: toNumber(r.lng),
         revenue: toNumber(r.revenue),
         qty: toNumber(r.qty),
+        share_pct: toNumber(r.share_pct),
       }))
     },
   })
